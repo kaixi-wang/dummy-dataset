@@ -1,5 +1,5 @@
-#import fiftyone as fo
-#import fiftyone.zoo.datasets.base as fozb
+import fiftyone as fo
+import fiftyone.zoo.datasets.base as fozb
 
 
 def hello():
