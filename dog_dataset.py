@@ -45,8 +45,11 @@ def download_and_prepare(dataset_dir=None, scratch_dir=None, split=None, **kwarg
 
     # Create dataset
     dataset_name= "ImageNet-Dogs"
-    if "dataset_name" in kwargs:
-        dataset_name= kwargs["dataset_name"]
+    i = 1
+    while dataset_name in fo.list_datasets():
+        dataset_name = dataset_name + "-" + str(i)
+        i += 1
+        # dataset_name= kwargs["dataset_name"]
 
     dataset = fo.Dataset(dataset_name)
     dataset.add_samples(samples)
