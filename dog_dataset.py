@@ -2,7 +2,7 @@ import os
 import requests
 import fiftyone as fo
 import tarfile
-def download_and_prepare(dataset_dir=None, scratch_dir=None, split=None):
+def download_and_prepare(dataset_dir=None, scratch_dir=None, split=None, **kwargs):
     url = 'http://vision.stanford.edu/aditya86/ImageNetDogs/images.tar'
 
     target_dir = os.path.join(fo.config.dataset_zoo_dir
@@ -44,6 +44,10 @@ def download_and_prepare(dataset_dir=None, scratch_dir=None, split=None):
             samples.append(sample)
 
     # Create dataset
-    dataset = fo.Dataset("ImageNet-Dogs")
+    dataset_name= "ImageNet-Dogs"
+    if "dataset_name" in kwargs:
+        dataset_name= kwargs["dataset_name"]
+
+    dataset = fo.Dataset(dataset_name)
     dataset.add_samples(samples)
     return dataset
